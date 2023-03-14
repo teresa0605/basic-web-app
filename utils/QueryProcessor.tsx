@@ -42,8 +42,10 @@ export default function QueryProcessor(query: string): string {
         cur = cur * 10 + Number(query[i]);
       }
       else {
-        ans *= cur;
-        cur = 0;
+        if (cur != 0) {
+          ans *= cur;
+          cur = 0;
+        }
       }
     }
     if (cur != 0)
