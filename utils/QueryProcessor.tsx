@@ -14,18 +14,23 @@ export default function QueryProcessor(query: string): string {
   }
 
   if (query.toLowerCase().includes("plus")) {
-    let matches = query.match(/\d+/g);
-    let len = matches?.length;
-    if (!len)
-      return "0";
-      
+    let len = query.length;
+    let cur = 0;
     let sum = 0;
     for (let i = 0; i < len; i++) {
-      sum += matches[i];
+      if (query[i] >= '0' && query[i] <= '9') {
+        cur = cur * 10 + Number(query[i]);
+      }
+      else {
+        sum += cur;
+        cur = 0;
+      }
     }
+    sum += cur;
     return (
       sum.toString()
-    );
+    )
+    
   }
 
   return "";
