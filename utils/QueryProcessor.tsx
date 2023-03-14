@@ -33,5 +33,30 @@ export default function QueryProcessor(query: string): string {
     
   }
 
+  if (query.toLowerCase().includes("minus")) {
+    let len = query.length;
+    let cur = 0;
+    let ans = 0;
+    let cnt = 0;
+    for (let i = 0; i < len; i++) {
+      if (query[i] >= '0' && query[i] <= '9') {
+        cur = cur * 10 + Number(query[i]);
+      }
+      else {
+        if (cnt == 0) {
+          ans += cur;
+          cur = 0;
+          cnt += 1;
+        } else {
+          ans -= cur;
+        }
+      }
+    }
+    return (
+      ans.toString()
+    )
+    
+  }
+
   return "";
 }
