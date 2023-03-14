@@ -33,6 +33,26 @@ export default function QueryProcessor(query: string): string {
     
   }
 
+  if (query.toLowerCase().includes("multipl")) {
+    let len = query.length;
+    let cur = 0;
+    let ans = 1;
+    for (let i = 0; i < len; i++) {
+      if (query[i] >= '0' && query[i] <= '9') {
+        cur = cur * 10 + Number(query[i]);
+      }
+      else {
+        ans *= cur;
+        cur = 0;
+      }
+    }
+    if (cur != 0)
+      ans *= cur;
+    return (
+      ans.toString()
+    )
+  }
+
   if (query.toLowerCase().includes("minus")) {
     let len = query.length;
     let cur = 0;
@@ -49,13 +69,13 @@ export default function QueryProcessor(query: string): string {
           cnt += 1;
         } else {
           ans -= cur;
+          cur = 0;
         }
       }
     }
     return (
       ans.toString()
     )
-    
   }
 
   return "";
