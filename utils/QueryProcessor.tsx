@@ -13,5 +13,20 @@ export default function QueryProcessor(query: string): string {
     );
   }
 
+  if (query.toLowerCase().includes("plus")) {
+    let matches = query.match(/\d+/g);
+    let len = matches?.length;
+    if (!len)
+      return "0";
+      
+    let sum = 0;
+    for (let i = 0; i < len; i++) {
+      sum += matches[i];
+    }
+    return (
+      sum.toString()
+    );
+  }
+
   return "";
 }
