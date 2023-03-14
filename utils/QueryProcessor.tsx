@@ -33,6 +33,27 @@ export default function QueryProcessor(query: string): string {
     
   }
 
+  if (query.toLowerCase().includes("great")) {
+    let len = query.length;
+    let cur = 0;
+    let ans = 0;
+    for (let i = 0; i < len; i++) {
+      if (query[i] >= '0' && query[i] <= '9') {
+        cur = cur * 10 + Number(query[i]);
+      }
+      else {
+        if (cur > ans)
+          ans = cur;
+        cur = 0;
+      }
+    }
+    if (cur > ans)
+          ans = cur;
+    return (
+      ans.toString()
+    )
+  }
+
   if (query.toLowerCase().includes("multipl")) {
     let len = query.length;
     let cur = 0;
